@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { useCounterStore } from '../store/counter'
+import { useCounterStore } from '@/store/counter'
 
 const counterStore = useCounterStore()
 
