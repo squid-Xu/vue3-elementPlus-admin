@@ -1,25 +1,25 @@
 /** 全局SCSS变量 */
 
 :root {
-	--menu-background: #304156;
-	--menu-text: #bfcbd9;
-	--menu-active-text: var(--el-menu-active-color);
-	--menu-hover: #263445;
-	--sidebar-logo-background: #3a3f47;
+  --menu-background: #304156;
+  --menu-text: #bfcbd9;
+  --menu-active-text: var(--el-menu-active-color);
+  --menu-hover: #263445;
+  --sidebar-logo-background: #2d3748;
 
-	// 修复表格 fixed 列被选中后由于透明色导致叠字的 bug
-	.el-table {
-		--el-table-current-row-bg-color: rgb(235 243 250);
-	}
+  // 修复表格 fixed 列被选中后由于透明色导致叠字的 bug
+  .el-table {
+    --el-table-current-row-bg-color: rgb(235 243 250);
+  }
 }
 
 /** 暗黑主题 */
 html.dark {
-	--menu-background: var(--el-bg-color-overlay);
-	--menu-text: #fff;
-	--menu-active-text: var(--el-menu-active-color);
-	--menu-hover: rgb(0 0 0 / 20%);
-	--sidebar-logo-background: rgb(0 0 0 / 20%);
+  --menu-background: var(--el-bg-color-overlay);
+  --menu-text: #fff;
+  --menu-active-text: var(--el-menu-active-color);
+  --menu-hover: rgb(0 0 0 / 20%);
+  --sidebar-logo-background: rgb(0 0 0 / 20%);
 }
 
 $menu-background: var(--menu-background); // 菜单背景色
