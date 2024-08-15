@@ -21,4 +21,14 @@ export default defineConfig({
 			'@': path.resolve(__dirname, 'src'),
 		},
 	},
+	css: {
+		// CSS 预处理器
+		preprocessorOptions: {
+			//define global scss variable
+			scss: {
+				javascriptEnabled: true,
+				additionalData: `@use "@/styles/variables.scss" as *;`,
+			},
+		},
+	},
 });
