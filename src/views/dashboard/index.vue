@@ -1,6 +1,5 @@
 <template>
-  <div class="dashboard-container">
-
+  <div>
     <el-card shadow="never">
       <el-row justify="space-between">
         <el-col :span="18" :xs="24">
@@ -265,10 +264,3 @@ const getNoticeLevelTag = (type: number) => {
 };
 
 </script>
-
-<style lang="scss" scoped>
-.dashboard-container {
-  position: relative;
-  padding: 24px;
-}
-</style>

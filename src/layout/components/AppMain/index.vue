@@ -30,5 +30,6 @@ const minHeight = computed(() => {
 .app-main {
   position: relative;
   background-color: var(--el-bg-color-page);
+  padding: 24px;
 }
 </style>

@@ -5,8 +5,11 @@
       :text-color="variables['menu-text']" :active-text-color="variables['menu-active-text']"
       @select="handleMenuSelect">
       <el-menu-item v-for="route in mixTopMenus" :key="route.path" :index="route.path">
-        <template #title>
-          <SidebarMenuItemTitle v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
+        <template #title v-if="route.meta">
+          <SidebarMenuItemTitle :icon="route?.meta?.icon" :title="route?.meta?.title" />
+        </template>
+        <template #title v-else>
+          <SidebarMenuItemTitle :icon="route?.children?.[0]?.meta?.icon" :title="route?.children?.[0]?.meta?.title" />
         </template>
       </el-menu-item>
     </el-menu>
