@@ -12,5 +12,4 @@ export * from './modules/app';
 export * from './modules/permission';
 export * from './modules/settings';
 export * from './modules/tagsView';
-// export * from "./modules/user";
 export { store };

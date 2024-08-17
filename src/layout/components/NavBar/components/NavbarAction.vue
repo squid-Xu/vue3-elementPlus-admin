@@ -43,17 +43,18 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useAppStore, useTagsViewStore, useSettingsStore } from "@/store";
+import SizeSelect from '@/components/SizeSelect/index.vue';
+// import { useAppStore, useTagsViewStore, useSettingsStore } from "@/store";
+import { useAppStore, useSettingsStore } from "@/store";
 import defaultSettings from "@/settings";
 import { DeviceEnum } from "@/enums/DeviceEnum";
-import { MessageTypeEnum, MessageTypeLabels } from "@/enums/MessageTypeEnum";
 
 const appStore = useAppStore();
-const tagsViewStore = useTagsViewStore();
+// const tagsViewStore = useTagsViewStore();
 const settingStore = useSettingsStore();
 
-const route = useRoute();
-const router = useRouter();
+// const route = useRoute();
+// const router = useRouter();
 
 const isMobile = computed(() => appStore.device === DeviceEnum.MOBILE);
 

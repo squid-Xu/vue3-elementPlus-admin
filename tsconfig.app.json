@@ -20,12 +20,12 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		//配置路径别名vscode智能提示
-		"baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
+		"baseUrl": ".", // 解析非相对模块的基地址，默认是当前目录
 		"paths": {
 			//路径映射，相对于baseUrl
 			"@/*": ["src/*"]
 		},
 		"allowSyntheticDefaultImports": true // 允许默认导入
 	},
-	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+	"include": ["src/**/*.ts", "./*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

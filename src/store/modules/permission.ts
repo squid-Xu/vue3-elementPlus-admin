@@ -1,6 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
 import { constantRoutes } from '@/router';
-import { store } from '@/store';
 // import MenuAPI, { RouteVO } from '@/api/menu';
 
 // const modules = import.meta.glob('../../views/**/**.vue');
@@ -80,11 +79,3 @@ export const usePermissionStore = defineStore('permission', () => {
 
 // 	return asyncRoutes;
 // };
-
-/**
- * 在组件外使用 Pinia store 实例
- * @see https://pinia.vuejs.org/core-concepts/outside-component-usage.html
- */
-export function usePermissionStoreHook() {
-	return usePermissionStore(store);
-}

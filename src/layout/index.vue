@@ -52,6 +52,7 @@ import AppMain from './components/AppMain/index.vue'
 import NavBar from './components/NavBar/index.vue'
 import TagsView from './components/TagsView/index.vue'
 import Settings from './components/Settings/index.vue'
+import hamburger from '@/components/Hamburger/index.vue'
 import { useAppStore, useSettingsStore, usePermissionStore } from "@/store";
 import defaultSettings from "@/settings";
 import { DeviceEnum } from "@/enums/DeviceEnum";

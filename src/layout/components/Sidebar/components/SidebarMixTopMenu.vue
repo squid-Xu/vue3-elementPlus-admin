@@ -6,13 +6,7 @@
       @select="handleMenuSelect">
       <el-menu-item v-for="route in mixTopMenus" :key="route.path" :index="route.path">
         <template #title>
-          <svg-icon v-if="route.meta && route.meta.icon" :icon-class="route.meta.icon" />
-          <span v-if="route.path === '/'">首页</span>
-          <template v-else>
-            <span v-if="route.meta && route.meta.title" class="ml-1">
-              {{ route.meta.title }}
-            </span>
-          </template>
+          <SidebarMenuItemTitle v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
         </template>
       </el-menu-item>
     </el-menu>
@@ -20,6 +14,8 @@
 </template>
 
 <script lang="ts" setup>
+import SidebarMenuItemTitle from './SidebarMenuItemTitle.vue';
+import { isExternal } from "@/utils/index";
 import { usePermissionStore, useAppStore } from "@/store";
 import variables from "@/styles/variables.module.scss";
 import { RouteRecordRaw } from "vue-router";
@@ -63,10 +59,12 @@ const goToFirstMenu = (menus: RouteRecordRaw[]) => {
 
   if (first.children && first.children.length > 0) {
     goToFirstMenu(first.children as RouteRecordRaw[]);
+  } else if (isExternal(first.path)) {
+    window.open(first.path, '_blank');
   } else if (first.name) {
     router.push({
       name: first.name,
-      query: first?.meta?.params,
+      query: first?.meta?.params as {},
     });
   }
 };

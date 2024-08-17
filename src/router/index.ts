@@ -15,6 +15,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 		path: '/',
 		component: Layout,
 		redirect: '/dashboard',
+		meta: { title: '首页', icon: 'homepage' },
 		children: [
 			{
 				path: 'dashboard',
@@ -28,10 +29,13 @@ export const constantRoutes: RouteRecordRaw[] = [
 	{
 		path: '/external-link',
 		component: Layout,
+		name: 'Nested',
+		meta: { title: '外部链接', icon: 'el-icon-Link' },
 		children: [
 			{
 				component: () => import('@/views/external-link/index.vue'),
 				path: 'https://juejin.cn/',
+				name: 'Nested',
 				meta: { title: '外部链接', icon: 'el-icon-Link' },
 			},
 		],

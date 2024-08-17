@@ -24,10 +24,6 @@ export default defineConfig({
 			resolvers: [
 				// 自动导入ElementPlus组件
 				ElementPlusResolver(),
-				// 自动导入图标组件
-				IconsResolver({
-					prefix: 'Icon',
-				}),
 			],
 		}),
 		Components({
@@ -36,11 +32,14 @@ export default defineConfig({
 				ElementPlusResolver(),
 				// 自动注册图标组件
 				IconsResolver({
-					enabledCollections: ['ep'], // element-plus图标库，其他图标库 https://icon-sets.iconify.design/
+					// 修改Icon组件前缀，不设置则默认为i,禁用则设置为false
+					// prefix: 'icon',
+					// 指定collection，即指定为elementplus图标集ep
+					enabledCollections: ['ep'],
 				}),
 			],
 		}),
-		// 自动安装图标库
+		// Icons图标自动下载
 		Icons({
 			autoInstall: true,
 		}),
@@ -52,9 +51,7 @@ export default defineConfig({
 		}),
 		// 使用Unocss
 		// UnoCSS 是一个即时、按需的原子级 CSS 引擎，旨在提供快速、高性能的原子级 CSS 解决方案。
-		UnoCSS({
-			/* options */
-		}),
+		UnoCSS(),
 	],
 	//路径别名
 	resolve: {

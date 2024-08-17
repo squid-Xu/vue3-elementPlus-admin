@@ -30,7 +30,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import SidebarMenuItemTitle from './SidebarMenuItemTitle.vue'
+import SidebarMenuItemTitle from './SidebarMenuItemTitle.vue';
+import AppLink from '@/components/AppLink/index.vue'
 defineOptions({
   name: "SidebarMenuItem",
   inheritAttrs: false,
