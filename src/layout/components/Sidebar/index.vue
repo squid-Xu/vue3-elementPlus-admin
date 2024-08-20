@@ -22,7 +22,9 @@ import SidebarMenu from './components/SidebarMenu.vue'
 import SidebarLogo from './components/SidebarLogo.vue'
 import SidebarMixTopMenu from './components/SidebarMixTopMenu.vue'
 import NavbarAction from '../NavBar/components/NavbarAction.vue'
-import { useSettingsStore, usePermissionStore, useAppStore } from "@/store";
+import { useAppStore, } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
+import { usePermissionStore } from "@/store/permission";
 import { LayoutEnum } from "@/enums/LayoutEnum";
 
 const appStore = useAppStore();

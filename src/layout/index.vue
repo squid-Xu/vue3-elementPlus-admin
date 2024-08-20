@@ -53,7 +53,9 @@ import NavBar from './components/NavBar/index.vue'
 import TagsView from './components/TagsView/index.vue'
 import Settings from './components/Settings/index.vue'
 import hamburger from '@/components/Hamburger/index.vue'
-import { useAppStore, useSettingsStore, usePermissionStore } from "@/store";
+import { useAppStore, } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
+import { usePermissionStore } from "@/store/permission";
 import defaultSettings from "@/settings";
 import { DeviceEnum } from "@/enums/DeviceEnum";
 import { LayoutEnum } from "@/enums/LayoutEnum";

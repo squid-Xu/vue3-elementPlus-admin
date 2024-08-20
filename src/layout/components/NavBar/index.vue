@@ -14,7 +14,7 @@
 import hamburger from '@/components/Hamburger/index.vue'
 import breadcrumb from '@/components/Breadcrumb/index.vue'
 import NavbarAction from './components/NavbarAction.vue'
-import { useAppStore } from "@/store";
+import { useAppStore } from "@/store/app";
 
 const appStore = useAppStore();
 

@@ -45,7 +45,8 @@
 <script setup lang="ts">
 import SizeSelect from '@/components/SizeSelect/index.vue';
 // import { useAppStore, useTagsViewStore, useSettingsStore } from "@/store";
-import { useAppStore, useSettingsStore } from "@/store";
+import { useAppStore } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
 import defaultSettings from "@/settings";
 import { DeviceEnum } from "@/enums/DeviceEnum";
 

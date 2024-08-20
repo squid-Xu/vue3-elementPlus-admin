@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import defaultSettings from "@/settings";
-import { useSettingsStore } from "@/store";
+import { useSettingsStore } from "@/store/settings";
 
 const settingsStore = useSettingsStore();
 

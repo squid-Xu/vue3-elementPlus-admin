@@ -42,13 +42,11 @@
 <script setup lang="ts">
 import { useRoute, useRouter, RouteRecordRaw } from "vue-router";
 import { resolve } from "path-browserify";
+import { useAppStore, } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
+import { usePermissionStore } from "@/store/permission";
+import { useTagsViewStore } from "@/store/tagsView";
 
-import {
-  usePermissionStore,
-  useTagsViewStore,
-  useSettingsStore,
-  useAppStore,
-} from "@/store";
 
 const { proxy } = getCurrentInstance()!;
 const router = useRouter();

@@ -13,7 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingsStore, useTagsViewStore } from "@/store";
+import { useSettingsStore } from "@/store/settings";
+import { useTagsViewStore } from "@/store/tagsView";
 import variables from "@/styles/variables.module.scss";
 
 const cachedViews = computed(() => useTagsViewStore().cachedViews); // 缓存页面集合

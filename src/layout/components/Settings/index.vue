@@ -40,7 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingsStore, usePermissionStore, useAppStore } from "@/store";
+import { useAppStore, } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
+import { usePermissionStore } from "@/store/permission";
 import ThemeColorPicker from './components/ThemeColorPicker.vue'
 import LayoutSelect from './components/LayoutSelect.vue'
 import { LayoutEnum } from "@/enums/LayoutEnum";

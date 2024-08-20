@@ -19,7 +19,8 @@
 <script lang="ts" setup>
 import SidebarMenuItemTitle from './SidebarMenuItemTitle.vue';
 import { isExternal } from "@/utils/index";
-import { usePermissionStore, useAppStore } from "@/store";
+import { useAppStore, } from "@/store/app";
+import { usePermissionStore } from "@/store/permission";
 import variables from "@/styles/variables.module.scss";
 import { RouteRecordRaw } from "vue-router";
 

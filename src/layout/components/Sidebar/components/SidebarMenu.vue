@@ -10,7 +10,8 @@
 
 <script lang="ts" setup>
 import SidebarMenuItem from './SidebarMenuItem.vue'
-import { useSettingsStore, useAppStore } from "@/store";
+import { useAppStore, } from "@/store/app";
+import { useSettingsStore } from "@/store/settings";
 import { isExternal } from "@/utils/index";
 import path from "path-browserify";
 import variables from "@/styles/variables.module.scss";
