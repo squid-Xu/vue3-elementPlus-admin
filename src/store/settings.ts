@@ -2,8 +2,6 @@ import defaultSettings from '@/settings';
 import { ThemeEnum } from '@/enums/ThemeEnum';
 import Color from 'color';
 
-type SettingsValue = boolean | string;
-
 export const useSettingsStore = defineStore('setting', () => {
 	// 是否显示设置
 	const settingsVisible = ref(false);
@@ -51,21 +49,6 @@ export const useSettingsStore = defineStore('setting', () => {
 		}
 	);
 
-	const settingsMap: Record<string, Ref<SettingsValue>> = {
-		fixedHeader,
-		tagsView,
-		sidebarLogo,
-		layout,
-		watermarkEnabled,
-	};
-
-	function changeSetting({ key, value }: { key: string; value: SettingsValue }) {
-		const setting = settingsMap[key];
-		if (setting) {
-			setting.value = value;
-		}
-	}
-
 	/**
 	 * 切换主题
 	 */
@@ -99,7 +82,6 @@ export const useSettingsStore = defineStore('setting', () => {
 		themeColor,
 		theme,
 		watermarkEnabled,
-		changeSetting,
 		changeTheme,
 		changeThemeColor,
 		changeLayout,

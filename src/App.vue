@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider :size="size">
+  <el-config-provider :size="size" :locale="zhCn">
     <!-- 开启水印 -->
     <el-watermark v-if="watermarkEnabled" :font="{ color: fontColor }" :content="defaultSettings.watermarkContent"
       :z-index="9999" class="wh-full">
@@ -16,6 +16,7 @@ import { useSettingsStore } from "@/store/settings";
 import defaultSettings from "@/settings";
 import { ThemeEnum } from "@/enums/ThemeEnum";
 import { SizeEnum } from "@/enums/SizeEnum";
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const appStore = useAppStore();
 const settingsStore = useSettingsStore();
