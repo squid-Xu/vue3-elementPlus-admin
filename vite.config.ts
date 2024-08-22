@@ -43,6 +43,7 @@ export default defineConfig({
 		Icons({
 			autoInstall: true,
 		}),
+		//用于生成 svg 雪碧图.
 		createSvgIconsPlugin({
 			// 指定需要缓存的图标文件夹
 			iconDirs: [path.resolve(__dirname, 'src/assets/icons')],

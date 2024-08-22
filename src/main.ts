@@ -9,7 +9,7 @@ import 'virtual:svg-icons-register';
 // 样式
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import '@/styles/index.scss';
-import 'uno.css';
+import 'virtual:uno.css';
 import 'animate.css';
 
 const pinia = createPinia();
