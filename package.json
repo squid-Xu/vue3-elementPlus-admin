@@ -25,6 +25,7 @@
         "@element-plus/icons-vue": "^2.3.1",
         "@vueuse/core": "^10.11.1",
         "animate.css": "^4.1.1",
+        "axios": "^1.7.4",
         "color": "^4.2.3",
         "echarts": "^5.5.1",
         "element-plus": "^2.8.0",
@@ -54,6 +55,7 @@
         "unplugin-vue-components": "^0.27.4",
         "vite": "^5.4.0",
         "vite-plugin-eslint": "^1.8.1",
+        "vite-plugin-mock": "^3.0.2",
         "vite-plugin-svg-icons": "^2.0.1",
         "vue-tsc": "^2.0.29"
     }

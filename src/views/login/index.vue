@@ -29,6 +29,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { login } from '@/api/user';
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus';
 interface RuleForm {
     username: string;
@@ -37,8 +38,8 @@ interface RuleForm {
 const formSize = ref<ComponentSize>('large');
 const ruleFormRef = ref<FormInstance>();
 const ruleForm = reactive<RuleForm>({
-    username: '',
-    password: ''
+    username: 'admin',
+    password: '123456'
 });
 const rules = reactive<FormRules<RuleForm>>({
     username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -46,9 +47,15 @@ const rules = reactive<FormRules<RuleForm>>({
 });
 const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
-    await formEl.validate((valid, fields) => {
+    await formEl.validate(async (valid, fields) => {
         if (valid) {
-            console.log('submit!');
+            console.log('submit!', ruleForm);
+            try {
+                let res = await login(ruleForm);
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
         } else {
             console.log('error submit!', fields);
         }

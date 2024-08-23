@@ -15,11 +15,17 @@ import UnoCSS from 'unocss/vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 // vite加入编译eslint错误提示
 import eslintPlugin from 'vite-plugin-eslint';
+// mock数据
+import { viteMockServe } from 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
+        viteMockServe({
+            mockPath: './src/mock', // 指向mock下的文件
+            enable: true //是否启用 mock 功能
+        }),
         eslintPlugin({
             // 配置选项
             cache: false, // 不缓存结果，每次都检查
