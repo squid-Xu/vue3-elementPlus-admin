@@ -8,7 +8,18 @@
         "build": "vue-tsc -b && vite build",
         "preview": "vite preview",
         "lint:eslint": "eslint \"src/**/*.{vue,ts,js}\" --fix",
-        "lint:prettier": "prettier --write \"**/*.{js,ts,json,css,less,scss,vue,html,md}\""
+        "lint:prettier": "prettier --write \"**/*.{js,ts,json,css,less,scss,vue,html,md}\"",
+        "lint:lint-staged": "lint-staged",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{vue,ts,js}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{js,ts,json,css,scss,vue,html,md}": [
+            "prettier --write"
+        ]
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.3.1",
@@ -31,6 +42,8 @@
         "eslint-plugin-vue": "^9.27.0",
         "fast-glob": "^3.3.2",
         "globals": "^15.9.0",
+        "husky": "^9.1.5",
+        "lint-staged": "^15.2.9",
         "prettier": "^3.3.3",
         "sass": "^1.77.8",
         "typescript": "^5.5.3",
