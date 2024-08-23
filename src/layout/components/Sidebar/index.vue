@@ -1,31 +1,31 @@
 <template>
-  <div :class="{ 'has-logo': sidebarLogo }">
-    <!-- layout mix-->
-    <div class="flex w-full" v-if="layout == LayoutEnum.MIX">
-      <SidebarLogo v-if="sidebarLogo" :collapse="!appStore.sidebar.opened" />
-      <SidebarMixTopMenu class="flex-1" />
-      <NavbarAction />
+    <div :class="{ 'has-logo': sidebarLogo }">
+        <!-- layout mix-->
+        <div class="flex w-full" v-if="layout == LayoutEnum.MIX">
+            <SidebarLogo v-if="sidebarLogo" :collapse="!appStore.sidebar.opened" />
+            <SidebarMixTopMenu class="flex-1" />
+            <NavbarAction />
+        </div>
+        <!-- layout left || layout top -->
+        <template v-else>
+            <SidebarLogo v-if="sidebarLogo" :collapse="!appStore.sidebar.opened" />
+            <el-scrollbar>
+                <SidebarMenu :menu-list="permissionStore.routes" base-path="" />
+            </el-scrollbar>
+            <NavbarAction v-if="layout === LayoutEnum.TOP" />
+        </template>
     </div>
-    <!-- layout left || layout top -->
-    <template v-else>
-      <SidebarLogo v-if="sidebarLogo" :collapse="!appStore.sidebar.opened" />
-      <el-scrollbar>
-        <SidebarMenu :menu-list="permissionStore.routes" base-path="" />
-      </el-scrollbar>
-      <NavbarAction v-if="layout === LayoutEnum.TOP" />
-    </template>
-  </div>
 </template>
 
 <script setup lang="ts">
-import SidebarMenu from './components/SidebarMenu.vue'
-import SidebarLogo from './components/SidebarLogo.vue'
-import SidebarMixTopMenu from './components/SidebarMixTopMenu.vue'
-import NavbarAction from '../NavBar/components/NavbarAction.vue'
-import { useAppStore, } from "@/store/app";
-import { useSettingsStore } from "@/store/settings";
-import { usePermissionStore } from "@/store/permission";
-import { LayoutEnum } from "@/enums/LayoutEnum";
+import SidebarMenu from './components/SidebarMenu.vue';
+import SidebarLogo from './components/SidebarLogo.vue';
+import SidebarMixTopMenu from './components/SidebarMixTopMenu.vue';
+import NavbarAction from '../NavBar/components/NavbarAction.vue';
+import { useAppStore } from '@/store/app';
+import { useSettingsStore } from '@/store/settings';
+import { usePermissionStore } from '@/store/permission';
+import { LayoutEnum } from '@/enums/LayoutEnum';
 
 const appStore = useAppStore();
 const settingsStore = useSettingsStore();
@@ -37,8 +37,8 @@ const layout = computed(() => settingsStore.layout);
 
 <style lang="scss" scoped>
 .has-logo {
-  .el-scrollbar {
-    height: calc(100vh - $navbar-height);
-  }
+    .el-scrollbar {
+        height: calc(100vh - $navbar-height);
+    }
 }
 </style>

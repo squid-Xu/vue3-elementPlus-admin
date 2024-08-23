@@ -6,48 +6,48 @@ import { constantRoutes } from '@/router';
 // const Layout = () => import('@/layout/index.vue');
 
 export const usePermissionStore = defineStore('permission', () => {
-	/** 所有路由，包括静态和动态路由 */
-	const routes = ref<RouteRecordRaw[]>([]);
-	/** 混合模式左侧菜单 */
-	const mixLeftMenus = ref<RouteRecordRaw[]>([]);
+    /** 所有路由，包括静态和动态路由 */
+    const routes = ref<RouteRecordRaw[]>([]);
+    /** 混合模式左侧菜单 */
+    const mixLeftMenus = ref<RouteRecordRaw[]>([]);
 
-	/**
-	 * 生成动态路由
-	 */
-	// function generateRoutes() {
-	// 	return new Promise<RouteRecordRaw[]>((resolve, reject) => {
-	// 		MenuAPI.getRoutes()
-	// 			.then(data => {
-	// 				const dynamicRoutes = transformRoutes(data);
-	// 				routes.value = constantRoutes.concat(dynamicRoutes);
-	// 				resolve(dynamicRoutes);
-	// 			})
-	// 			.catch(error => {
-	// 				reject(error);
-	// 			});
-	// 	});
-	// }
-	routes.value = constantRoutes;
+    /**
+     * 生成动态路由
+     */
+    // function generateRoutes() {
+    // 	return new Promise<RouteRecordRaw[]>((resolve, reject) => {
+    // 		MenuAPI.getRoutes()
+    // 			.then(data => {
+    // 				const dynamicRoutes = transformRoutes(data);
+    // 				routes.value = constantRoutes.concat(dynamicRoutes);
+    // 				resolve(dynamicRoutes);
+    // 			})
+    // 			.catch(error => {
+    // 				reject(error);
+    // 			});
+    // 	});
+    // }
+    routes.value = constantRoutes;
 
-	/**
-	 * 混合模式菜单下根据顶部菜单路径设置左侧菜单
-	 *
-	 * @param topMenuPath - 顶部菜单路径
-	 */
-	const setMixLeftMenus = (topMenuPath: string) => {
-		const matchedItem = routes.value.find(item => item.path === topMenuPath);
+    /**
+     * 混合模式菜单下根据顶部菜单路径设置左侧菜单
+     *
+     * @param topMenuPath - 顶部菜单路径
+     */
+    const setMixLeftMenus = (topMenuPath: string) => {
+        const matchedItem = routes.value.find((item) => item.path === topMenuPath);
 
-		if (matchedItem && matchedItem.children) {
-			mixLeftMenus.value = matchedItem.children;
-		}
-	};
+        if (matchedItem && matchedItem.children) {
+            mixLeftMenus.value = matchedItem.children;
+        }
+    };
 
-	return {
-		routes,
-		// generateRoutes,
-		mixLeftMenus,
-		setMixLeftMenus,
-	};
+    return {
+        routes,
+        // generateRoutes,
+        mixLeftMenus,
+        setMixLeftMenus
+    };
 });
 
 /**
