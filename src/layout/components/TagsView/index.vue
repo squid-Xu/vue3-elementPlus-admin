@@ -178,7 +178,7 @@ function isFirstView() {
       selectedTag.value.path === "/dashboard" ||
       selectedTag.value.fullPath === tagsViewStore.visitedViews[1].fullPath
     );
-  } catch (err) {
+  } catch {
     return false;
   }
 }
@@ -189,7 +189,7 @@ function isLastView() {
       selectedTag.value.fullPath ===
       tagsViewStore.visitedViews[tagsViewStore.visitedViews.length - 1].fullPath
     );
-  } catch (err) {
+  } catch {
     return false;
   }
 }

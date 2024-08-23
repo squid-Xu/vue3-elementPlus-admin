@@ -2,6 +2,7 @@
 
 declare module 'path-browserify';
 declare module 'color';
+declare module 'vite-plugin-eslint';
 
 /**
  * 页签对象

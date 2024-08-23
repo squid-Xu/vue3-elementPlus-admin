@@ -68,7 +68,7 @@ const goToFirstMenu = (menus: RouteRecordRaw[]) => {
   } else if (first.name) {
     router.push({
       name: first.name,
-      query: first?.meta?.params as {},
+      query: first?.meta?.params as undefined,
     });
   }
 };

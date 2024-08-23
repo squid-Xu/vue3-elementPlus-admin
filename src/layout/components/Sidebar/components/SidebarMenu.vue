@@ -60,7 +60,7 @@ function resolvePath(routePath: string) {
  * 修复切换到horizontal时，展开的菜单显示问题，切换时关闭全部菜单
  */
 const menuIndexArray = ref<string[]>([]);
-const handleOpen = (index: string, keyPath: string[]) => {
+const handleOpen = (index: string) => {
   menuIndexArray.value.push(index);
 };
 const handleClose = (index: string) => {

@@ -25,7 +25,7 @@ const isExternalLink = computed(() => {
 
 const linkType = computed(() => (isExternalLink.value ? "a" : "router-link"));
 
-const linkProps = (to: any) => {
+const linkProps = (to:any) => {
   if (isExternalLink.value) {
     return {
       href: to.path,

@@ -13,11 +13,17 @@ import path from 'path';
 import UnoCSS from 'unocss/vite';
 // 引入SVG本地图标
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+// vite加入编译eslint错误提示
+import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
 		vue(),
+		eslint({
+			// 配置选项
+			cache: false, // 不缓存结果，每次都检查
+		}),
 		AutoImport({
 			// 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
 			imports: ['vue', '@vueuse/core', 'pinia', 'vue-router'],
