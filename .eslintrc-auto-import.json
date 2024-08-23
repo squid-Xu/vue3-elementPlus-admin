@@ -304,6 +304,7 @@
         "ElLoading": true,
         "ElMessageBox": true,
         "ElMessage": true,
+        "ElNotification": true,
         "TagView": true
     }
 }

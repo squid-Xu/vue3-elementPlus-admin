@@ -19,7 +19,7 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="login-wrap-btn" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+                        <el-button class="login-wrap-btn" :loading="loading" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
                     </el-form-item>
                 </el-form>
                 <div class="foget">忘记密码？</div>
@@ -29,8 +29,15 @@
     </div>
 </template>
 <script setup lang="ts">
-import { login } from '@/api/user';
+import { useUserStore } from '@/store/user';
+import router from '@/router';
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus';
+
+const userStore = useUserStore();
+
+// 按钮 loading 状态
+const loading = ref(false);
+
 interface RuleForm {
     username: string;
     password: string;
@@ -49,13 +56,15 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
         if (valid) {
-            console.log('submit!', ruleForm);
-            try {
-                let res = await login(ruleForm);
-                console.log(res);
-            } catch (error) {
-                console.log(error);
-            }
+            loading.value = true;
+            userStore
+                .login(ruleForm)
+                .then(() => {
+                    router.push({ path: '/' });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         } else {
             console.log('error submit!', fields);
         }

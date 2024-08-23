@@ -1,59 +1,60 @@
-import axios from 'axios';
+import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import { TOKEN_KEY } from '@/enums/CacheEnum';
 
 //创建axios实例
 const service = axios.create({
-    baseURL: '/api',
-    timeout: 60000
+    baseURL: import.meta.env.VITE_APP_BASE_API,
+    timeout: 60000,
+    headers: { 'Content-Type': 'application/json;charset=utf-8' }
 });
 
 //请求拦截器
-service.interceptors.request.use((config) => {
-    //config配置对象，headers属性请求头，经常给服务器端携带公共参数
-    return config;
-});
+service.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+        const accessToken = localStorage.getItem(TOKEN_KEY);
+        if (accessToken) {
+            config.headers.Authorization = accessToken;
+        }
+        return config;
+    },
+    (error: any) => {
+        return Promise.reject(error);
+    }
+);
 //响应拦截器
 service.interceptors.response.use(
-    (response) => {
-        //response响应对象，data属性是服务器端返回的数据
-        return response.data;
-    },
-    (error) => {
-        //失败的回调函数：处理http状态码不是200的情况
-        //error对象中包含的信息：config请求配置对象，response响应对象，request请求对象
-        //定义一个变量用于存储错误信息
-        let message = '';
-        //http状态码：400 401 403 404 500 501 502 503 504
-        const status = error.response.status;
-        switch (status) {
-            case 400:
-                message = '请求参数错误';
-                break;
-            case 401:
-                message = '身份信息无效';
-                break;
-            case 403:
-                message = '没有操作权限';
-                break;
-            case 404:
-                message = '请求资源不存在';
-                break;
-            case 500:
-                message = '服务器内部错误';
-                break;
-            case 503:
-                message = '服务器正在维护';
-                break;
-            case 504:
-                message = '服务器超时';
-                break;
-            default:
-                message = '未知错误';
-                break;
+    (response: AxiosResponse) => {
+        // 检查配置的响应类型是否为二进制类型（'blob' 或 'arraybuffer'）, 如果是，直接返回响应对象
+        if (response.config.responseType === 'blob' || response.config.responseType === 'arraybuffer') {
+            return response;
         }
-        //利用element-ui Message做消息提示
-        ElMessage.error(message);
-        //创建一个失败的promise对象
-        return Promise.reject(error);
+        const { code, data, msg } = response.data;
+        if (code === 200) {
+            return data;
+        }
+        ElMessage.error(msg || '系统出错');
+        return Promise.reject(new Error(msg || 'Error'));
+    },
+    (error: any) => {
+        // 异常处理
+        if (error.response.data) {
+            const { code, msg } = error.response.data;
+            if (code === 401) {
+                ElNotification({
+                    title: '提示',
+                    message: '您的会话已过期，请重新登录',
+                    type: 'info'
+                });
+                // useUserStoreHook()
+                //     .resetToken()
+                //     .then(() => {
+                //         location.reload();
+                //     });
+            } else {
+                ElMessage.error(msg || '系统出错');
+            }
+        }
+        return Promise.reject(error.message);
     }
 );
 
