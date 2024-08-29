@@ -4,6 +4,17 @@ export const Layout = () => import('@/layout/index.vue');
 
 // 静态路由
 export const constantRoutes: RouteRecordRaw[] = [
+    {
+        path: '/redirect',
+        component: Layout,
+        meta: { hidden: true },
+        children: [
+            {
+                path: '/redirect/:path(.*)',
+                component: () => import('@/views/redirect/index.vue')
+            }
+        ]
+    },
     // 登录页
     {
         path: '/login',
@@ -88,7 +99,18 @@ export const constantRoutes: RouteRecordRaw[] = [
                 meta: { title: '测试菜单', icon: 'homepage' }
             }
         ]
-    }
+    },
+    {
+        path: '/401',
+        component: () => import('@/views/error-page/401.vue'),
+        meta: { hidden: true }
+    },
+    {
+        path: '/404',
+        component: () => import('@/views/error-page/404.vue'),
+        meta: { hidden: true }
+    },
+    { path: '/*', redirect: '/404', meta: { hidden: true } }
 ];
 
 /**

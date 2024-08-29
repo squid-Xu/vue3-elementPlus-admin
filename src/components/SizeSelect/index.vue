@@ -1,5 +1,16 @@
 <template>
-    <el-dropdown trigger="click" @command="handleSizeChange">
+    <el-dropdown
+        trigger="click"
+        @command="handleSizeChange"
+        :popper-options="{
+            modifiers: [
+                {
+                    name: 'computeStyles',
+                    options: { gpuAcceleration: false, adaptive: false }
+                }
+            ]
+        }"
+    >
         <div>
             <svg-icon icon-class="size" />
         </div>

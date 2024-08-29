@@ -13,7 +13,18 @@
         </template>
 
         <!-- 用户头像 -->
-        <el-dropdown class="nav-action-item" trigger="click">
+        <el-dropdown
+            class="nav-action-item"
+            trigger="click"
+            :popper-options="{
+                modifiers: [
+                    {
+                        name: 'computeStyles',
+                        options: { gpuAcceleration: false, adaptive: false }
+                    }
+                ]
+            }"
+        >
             <div class="flex-center h100% p10px">
                 <img :src="avatar" class="rounded-full mr-10px w24px w24px" />
                 <span>admin</span>
@@ -26,7 +37,7 @@
                     <a target="_blank" href="https://squid-xu.github.io/blog/">
                         <el-dropdown-item>项目文档</el-dropdown-item>
                     </a>
-                    <el-dropdown-item divided @click="logout">注销地址</el-dropdown-item>
+                    <el-dropdown-item divided @click="logout">注销登录</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
@@ -41,18 +52,20 @@
 </template>
 <script setup lang="ts">
 import SizeSelect from '@/components/SizeSelect/index.vue';
-// import { useAppStore, useTagsViewStore, useSettingsStore } from "@/store";
+import { useTagsViewStore } from '@/store/tagsView';
+import { useUserStore } from '@/store/user';
 import { useAppStore } from '@/store/app';
 import { useSettingsStore } from '@/store/settings';
 import defaultSettings from '@/settings';
 import { DeviceEnum } from '@/enums/DeviceEnum';
 
 const appStore = useAppStore();
-// const tagsViewStore = useTagsViewStore();
+const userStore = useUserStore();
+const tagsViewStore = useTagsViewStore();
 const settingStore = useSettingsStore();
 
-// const route = useRoute();
-// const router = useRouter();
+const route = useRoute();
+const router = useRouter();
 
 const isMobile = computed(() => appStore.device === DeviceEnum.MOBILE);
 
@@ -68,16 +81,18 @@ function logout() {
         cancelButtonText: '取消',
         type: 'warning',
         lockScroll: false
-    }).then(() => {
-        // userStore
-        //   .logout()
-        //   .then(() => {
-        //     tagsViewStore.delAllViews();
-        //   })
-        //   .then(() => {
-        //     router.push(`/login?redirect=${route.fullPath}`);
-        //   });
-    });
+    })
+        .then(() => {
+            userStore
+                .resetToken()
+                .then(() => {
+                    tagsViewStore.delAllViews();
+                })
+                .then(() => {
+                    router.push(`/login?redirect=${route.fullPath}`);
+                });
+        })
+        .catch(() => {});
 }
 </script>
 <style lang="scss" scoped>

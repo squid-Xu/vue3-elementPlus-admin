@@ -29,11 +29,14 @@
     </div>
 </template>
 <script setup lang="ts">
+import { LocationQuery, useRoute } from 'vue-router';
 import { useUserStore } from '@/store/user';
 import router from '@/router';
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus';
 
 const userStore = useUserStore();
+
+const route = useRoute();
 
 // 按钮 loading 状态
 const loading = ref(false);
@@ -60,7 +63,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             userStore
                 .login(ruleForm)
                 .then(() => {
-                    router.push({ path: '/' });
+                    const { path, queryParams } = parseRedirect();
+                    router.push({ path: path, query: queryParams });
                 })
                 .finally(() => {
                     loading.value = false;
@@ -69,6 +73,21 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             console.log('error submit!', fields);
         }
     });
+};
+/** 解析 redirect 字符串 为 path 和  queryParams */
+const parseRedirect = (): { path: string; queryParams: Record<string, string> } => {
+    const query: LocationQuery = route.query;
+    const redirect = (query.redirect as string) ?? '/';
+
+    const url = new URL(redirect, window.location.origin);
+    const path = url.pathname;
+    const queryParams: Record<string, string> = {};
+
+    url.searchParams.forEach((value, key) => {
+        queryParams[key] = value;
+    });
+
+    return { path, queryParams };
 };
 </script>
 <style lang="scss" scoped>

@@ -12,6 +12,9 @@ import '@/styles/index.scss';
 import 'virtual:uno.css';
 import 'animate.css';
 
+//路由权限
+import '@/permission';
+
 const pinia = createPinia();
 const app = createApp(App);
 
