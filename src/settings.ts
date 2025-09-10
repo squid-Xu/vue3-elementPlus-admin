@@ -5,7 +5,7 @@ import { ThemeEnum } from './enums/ThemeEnum';
 const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
 
 const defaultSettings: AppSettings = {
-    title: '河南省政务一体化',
+    title: 'Vite + Vue + TS',
     showSettings: true,
     tagsView: true,
     fixedHeader: true,
@@ -15,7 +15,7 @@ const defaultSettings: AppSettings = {
     size: SizeEnum.DEFAULT,
     themeColor: '#409EFF',
     watermarkEnabled: false,
-    watermarkContent: '河南省政务一体化'
+    watermarkContent: 'Vite + Vue + TS'
 };
 
 export default defaultSettings;
